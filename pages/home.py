@@ -3,15 +3,23 @@ import os
 
 
 def show():
-    # Get the absolute path of the current file
-    current_dir = os.path.dirname(os.path.abspath(__file__))
+    try:
+        # Get the absolute path of the current file
+        current_dir = os.path.dirname(os.path.abspath(__file__))
 
-    # Construct the path to the image file
-    image_path = os.path.join(current_dir, 'asserts', 'img', 'home.jpg')
-    print(image_path)
-    # Use the image in Streamlit
-    st.image(image_path)
+        # Construct the path to the image file
+        image_path = os.path.join(current_dir, 'asserts', 'img', 'home.jpg')
+        print(image_path)
+        # Check if the file exists
+        if not os.path.isfile(image_path):
+            st.error(f"Image file not found: {image_path}")
+            return
 
+        # Use the image in Streamlit
+        st.image(image_path)
+
+    except Exception as e:
+        st.error(f"Error loading image: {e}")
 
 # def show():
 #     st.title("Electricity Demand and Supply Forecasting App")
