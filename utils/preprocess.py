@@ -1,11 +1,17 @@
 import pandas as pd
 import joblib
 import numpy as np
+import tensorflow as tf
 
 def load_scaler():
     # Load the saved scaler
     scaler = joblib.load("./model/scaler.pkl")
     return scaler
+
+def load_model():
+    # Load the TensorFlow model
+    model = tf.keras.models.load_model('./model/Elec_model.h5')
+    return model
 
 def preprocess_data(region, year, scaler, features):
     """
