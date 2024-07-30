@@ -1,12 +1,12 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-from model.preprocess import load_scaler, preprocess_data
+from utils.preprocess import load_scaler, preprocess_data
 import tensorflow as tf
 
 def load_model():
     # Load the TensorFlow model
-    model = tf.keras.models.load_model('model/Elec_model.h5')
+    model = tf.keras.models.load_model('./model/Elec_model.h5')
     return model
 
 def show():
@@ -22,15 +22,15 @@ def show():
                 'year', 'el_access_total', 'gdp_pc']
 
     # Load scaler and model
-    scaler = load_scaler()
+    # scaler = load_scaler()
     model = load_model()
 
-    # Preprocess input data
-    input_data = preprocess_data(region, year, scaler, features)
+    # # Preprocess input data
+    # input_data = preprocess_data(region, year, scaler, features)
 
-    # Make prediction
-    prediction = model.predict(input_data)
-    st.write(f"Predicted Electricity Demand and Supply Gap for {region} in {year}: {prediction[0][0]}")
+    # # Make prediction
+    # prediction = model.predict(input_data)
+    # st.write(f"Predicted Electricity Demand and Supply Gap for {region} in {year}: {prediction[0][0]}")
 
     # Optional: Show some example data
     st.subheader("Sample Data")
